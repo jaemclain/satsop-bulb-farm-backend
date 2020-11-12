@@ -32,15 +32,24 @@ router.post("/homeText", ({ body }, res ) => {
 
 //Put request for home text
 router.put("/homeText", ({ body }, res ) => {
-    db.Home.update(body)
+    db.Home.update(body
+        )
     .then(text => res.json(text))
     .catch(err => {
         res.json(err);
       });
 })
 
-// router.put("/homeText/:id", ({ body }, res ) => {
-//     Home.findByIdAndUpdate(req.params.id)
-// })
+router.put("/homeText/:id", ({ body }, res ) => {
+     db.Home.findByIdAndUpdate(
+         {_id: mongojs.Object(req.params.id)},
+         
+     )
+     .then(text => res.json(text))
+     .catch(err => {
+        res.json(err);
+      });
+     
+ })
 
 module.exports = router;
