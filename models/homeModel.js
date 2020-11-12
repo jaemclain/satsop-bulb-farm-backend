@@ -3,19 +3,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const HomeSchema = new Schema({
-  section: {
-    type: String,
-    trim: true,
-    required: "Username is Required"
-  },
-
   title: {
     type: String,
     trim: true,
     required: "Password is Required",
     
   },
-
   text: {
     type: String,
     trim: true,
@@ -31,6 +24,6 @@ const HomeSchema = new Schema({
   }
 });
 
-const User = mongoose.model("User", UserSchema);
+const Home = mongoose.model("Home", HomeSchema);
 
-module.exports = User;
+module.exports = Home;
