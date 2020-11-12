@@ -1,40 +1,53 @@
-const ProductSchema = new Schema({ 
-    name: {
-      type: String,
-      trim: true,
-      required: "Product Name"
-    },
+const mongoose = require("mongoose");
 
-    color: {
-      type: String,
-    },
+const Schema = mongoose.Schema;
 
-    price: {
-      type: integer,
-      required: "Price (USD)"
-    },
+const ProductSchema = new Schema({
+  name: {
+    type: String,
+    trim: true,
+    required: "Product Name"
+  },
 
-    bloomSeason: {
-      type: string
-    },
+  color: {
+    type: String,
+    trim: true,
+  },
 
-    sun:{
-      type: boolean
-    },
+  price: {
+    type: Number,
+    required: "Price (USD)"
+  },
 
-    drainedSoil:{
-        type: boolean
-    },
+  bloomSeason: {
+    type: String,
+    trim: true,
+  },
 
-    inStock:{
-      type: boolean
-    },
+  plantingSeason: {
+    type: String,
+    trim: true,
+  },
 
-    sale:{
-      type: boolean
-    },
+  sun: {
+    type: Boolean
+  },
+
+  drainedSoil: {
+    type: Boolean
+  },
+
+  inStock: {
+    type: Boolean
+  },
+
+  sale: {
+    type: Boolean
+  },
 
 })
 
 
-export default mongoose.model('Product', ProductSchema);
+const Product = mongoose.model('Product', ProductSchema);
+
+module.exports = Product;
