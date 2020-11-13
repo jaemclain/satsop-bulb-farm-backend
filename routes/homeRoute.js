@@ -40,9 +40,9 @@ router.put("/homeText", ({ body }, res ) => {
       });
 })
 
-router.put("/homeText/:id", ({ body }, res ) => {
+router.put("/homeText/:id", ({ body, params }, res ) => {
      db.Home.findByIdAndUpdate(
-        {_id: mongojs.Object(req.params.id)},
+        {_id: params.id},
         {$set: body}
          
      )
