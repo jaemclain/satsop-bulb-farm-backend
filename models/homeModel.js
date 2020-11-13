@@ -6,7 +6,7 @@ const HomeSchema = new Schema({
   title: {
     type: String,
     trim: true,
-    required: "Password is Required",
+    required: "Title is Required",
     
   },
   text: {

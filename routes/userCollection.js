@@ -1,18 +1,6 @@
 const router = require("express").Router();
 const db = require("../models");
 
-<<<<<<< HEAD
-// Route - User Collection - Find ALL Users
-app.get("/user", (req, res) => {
-  db.User.find({})
-    .then(dbUser => {
-      res.json(dbUser);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
-=======
 // Route - User Collection
 router.get("/user", (req, res) => {
     db.User.find({})
@@ -23,7 +11,6 @@ router.get("/user", (req, res) => {
         res.json(err);
       });
   });
->>>>>>> dev
 
 
 // Create New User (ADMIN ONLY)
