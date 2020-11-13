@@ -27,6 +27,7 @@ app.use("/api", routes.Home)
 app.use("/api", routes.PlantingInstructions)
 app.use("/api", routes.Product)
 app.use("/api", routes.User)
+app.use("/api", routes.faq)
 
 
 
