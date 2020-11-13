@@ -1,18 +1,17 @@
 const router = require("express").Router();
 const db = require("../models");
 
-
-//Get request for home text
-router.get("/homeText", (req, res) => {
-    db.Home.find()
+//Get request for f&q text
+router.get("/f&qText", (req, res) => {
+    db.f&q.find()
     .then(text => res.json(text))
     .catch(err => {
         res.json(err);
       });
 })
 
-router.get("/homeText/:id", (req, res) => {
-    db.Home.findOne({
+router.get("/f&qText/:id", (req, res) => {
+    db.f&q.findOne({
         _id: req.params.id
     })
     .then(text => res.json(text))
@@ -21,18 +20,18 @@ router.get("/homeText/:id", (req, res) => {
       });
 })
 
-//Post request for home text
-router.post("/homeText", ({ body }, res ) => {
-    db.Home.create(body).then(text =>
+//Post request for f&q text
+router.post("/f&qText", ({ body }, res ) => {
+    db.f&q.create(body).then(text =>
         res.json(text)).catch(err => 
             {
                 res.json(err);
             });
     })
 
-//Put request for home text
-router.put("/homeText", ({ body }, res ) => {
-    db.Home.update(body
+//Put request for f&q text
+router.put("/f&qText", ({ body }, res ) => {
+    db.f&q.update(body
         )
     .then(text => res.json(text))
     .catch(err => {
@@ -40,11 +39,10 @@ router.put("/homeText", ({ body }, res ) => {
       });
 })
 
-router.put("/homeText/:id", ({ body, params }, res ) => {
-     db.Home.findByIdAndUpdate(
-        {_id: params.id},
-        {$set: body}
-         
+router.put("/f&qText/:id", ({ body }, res ) => {
+     db.f&q.findByIdAndUpdate(
+         {_id: mongojs.Object(req.params.id)},
+         {$set: body}
      )
      .then(text => res.json(text))
      .catch(err => {
@@ -52,6 +50,5 @@ router.put("/homeText/:id", ({ body, params }, res ) => {
       });
      
  })
-
 
 module.exports = router;

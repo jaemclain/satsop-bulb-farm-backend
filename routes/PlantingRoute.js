@@ -40,9 +40,9 @@ router.put("/PlantingInstructionText", ({ body }, res ) => {
       });
 })
 
-router.put("/PlantingInstructionText/:id", ({ body }, res ) => {
+router.put("/PlantingInstructionText/:id", ({ body, params }, res ) => {
      db.PlantingInstruction.findByIdAndUpdate(
-         {_id: mongojs.Object(req.params.id)},
+         {_id: params.id},
          {$set: body}
      )
      .then(text => res.json(text))

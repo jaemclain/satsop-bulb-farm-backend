@@ -2,28 +2,24 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const HomeSchema = new Schema({
-  title: {
+const fqSchema = new Schema({
+  question: {
     type: String,
     trim: true,
-    required: "Title is Required",
+    
     
   },
-  text: {
+  answer: {
     type: String,
     trim: true,
   },
 
-  userCreated: {
-    type: Date,
-    default: Date.now
-  },
   updatedAt: {
       type: Date,
       default: Date.now
   }
 });
 
-const Home = mongoose.model("Home", HomeSchema);
+const fq = mongoose.model("fq", fqSchema);
 
-module.exports = Home;
+module.exports = fq;
