@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const router = require("../routes/userRoute");
+const router = require("../routes");
 
 const Schema = mongoose.Schema;
 

@@ -2,12 +2,10 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const fqSchema = new Schema({
+const faqSchema = new Schema({
   question: {
     type: String,
     trim: true,
-    
-    
   },
   answer: {
     type: String,
@@ -20,6 +18,6 @@ const fqSchema = new Schema({
   }
 });
 
-const fq = mongoose.model("fq", fqSchema);
+const faq = mongoose.model("faq", faqSchema);
 
-module.exports = fq;
+module.exports = faq;

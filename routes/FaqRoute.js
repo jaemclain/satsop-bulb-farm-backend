@@ -1,17 +1,18 @@
 const router = require("express").Router();
-const db = require("../models");
+const db = require("../models")
 
-//Get request for f&q text
-router.get("/f&qText", (req, res) => {
-    db.f&q.find()
+//Get request for faq text
+router.get("/faqText", (req, res) => {
+    console.log(db)
+    db.faq.find()
     .then(text => res.json(text))
     .catch(err => {
         res.json(err);
       });
 })
 
-router.get("/f&qText/:id", (req, res) => {
-    db.f&q.findOne({
+router.get("/faqText/:id", (req, res) => {
+    db.faq.findOne({
         _id: req.params.id
     })
     .then(text => res.json(text))
@@ -21,8 +22,9 @@ router.get("/f&qText/:id", (req, res) => {
 })
 
 //Post request for f&q text
-router.post("/f&qText", ({ body }, res ) => {
-    db.f&q.create(body).then(text =>
+router.post("/faqText", ({ body }, res ) => {
+    console.log(db)
+    db.faq.create(body).then(text =>
         res.json(text)).catch(err => 
             {
                 res.json(err);
@@ -30,8 +32,8 @@ router.post("/f&qText", ({ body }, res ) => {
     })
 
 //Put request for f&q text
-router.put("/f&qText", ({ body }, res ) => {
-    db.f&q.update(body
+router.put("/faqText", ({ body }, res ) => {
+    db.faq.update(body
         )
     .then(text => res.json(text))
     .catch(err => {
@@ -39,8 +41,8 @@ router.put("/f&qText", ({ body }, res ) => {
       });
 })
 
-router.put("/f&qText/:id", ({ body }, res ) => {
-     db.f&q.findByIdAndUpdate(
+router.put("/faqText/:id", ({ body }, res ) => {
+     db.faq.findByIdAndUpdate(
          {_id: mongojs.Object(req.params.id)},
          {$set: body}
      )

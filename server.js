@@ -4,9 +4,6 @@ const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3000;
 
-//bring in models
-const db = require("./models")
-
 const app = express();
 //bring in routes
 const routes = require("./routes")
@@ -23,12 +20,7 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/satsopBulbFarmdb", { useNewUrlParser: true });
 
 //use routes
-app.use("/api", routes.Home)
-app.use("/api", routes.PlantingInstructions)
-app.use("/api", routes.Product)
-app.use("/api", routes.User)
-
-
+app.use("/api", routes)
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
