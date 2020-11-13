@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3000;
 
+//bring in models
+const db = require("./models")
+
 const app = express();
 //bring in routes
 const routes = require("./routes")
