@@ -4,11 +4,22 @@ const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3000;
 
-const User = require("./userModel");
+<<<<<<< HEAD
+// const User = require("./userModel");
+const db = require("./models")
+=======
+//bring in models
+const db = require("./models")
+
+>>>>>>> dev
 const app = express();
+//bring in routes
+const routes = require("./routes")
+
 
 app.use(logger("dev"));
 
+//define middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -16,15 +27,8 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/satsopBulbFarmdb", { useNewUrlParser: true });
 
-app.post("/submit", ({ body }, res) => {
-    User.create(body)
-      .then(satsopdb => {
-        res.json(satsopdb);
-      })
-      .catch(err => {
-        res.json(err);
-      });
-  });
+//use routes
+app.use("/homeText", routes.Home)
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const router = require("../routes/userCollection");
 
 const Schema = mongoose.Schema;
 
@@ -46,6 +47,8 @@ const ProductSchema = new Schema({
   },
 
 })
+
+
 
 
 const Product = mongoose.model('Product', ProductSchema);
