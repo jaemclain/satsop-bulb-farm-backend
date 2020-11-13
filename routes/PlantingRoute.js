@@ -2,17 +2,17 @@ const router = require("express").Router();
 const db = require("../models");
 
 
-//Get request for home text
-router.get("/homeText", (req, res) => {
-    db.Home.find()
+//Get request for PlantingInstruction text
+router.get("/PlantingInstructionText", (req, res) => {
+    db.PlantingInstruction.find()
     .then(text => res.json(text))
     .catch(err => {
         res.json(err);
       });
 })
 
-router.get("/homeText/:id", (req, res) => {
-    db.Home.findOne({
+router.get("/PlantingInstructionText/:id", (req, res) => {
+    db.PlantingInstruction.findOne({
         _id: req.params.id
     })
     .then(text => res.json(text))
@@ -21,18 +21,18 @@ router.get("/homeText/:id", (req, res) => {
       });
 })
 
-//Post request for home text
-router.post("/homeText", ({ body }, res ) => {
-    db.Home.create(body).then(text =>
+//Post request for PlantingInstruction text
+router.post("/PlantingInstructionText", ({ body }, res ) => {
+    db.PlantingInstruction.create(body).then(text =>
         res.json(text)).catch(err => 
             {
                 res.json(err);
             });
     })
 
-//Put request for home text
-router.put("/homeText", ({ body }, res ) => {
-    db.Home.update(body
+//Put request for PlantingInstruction text
+router.put("/PlantingInstructionText", ({ body }, res ) => {
+    db.PlantingInstruction.update(body
         )
     .then(text => res.json(text))
     .catch(err => {
@@ -40,10 +40,10 @@ router.put("/homeText", ({ body }, res ) => {
       });
 })
 
-router.put("/homeText/:id", ({ body }, res ) => {
-     db.Home.findByIdAndUpdate(
+router.put("/PlantingInstructionText/:id", ({ body }, res ) => {
+     db.PlantingInstruction.findByIdAndUpdate(
          {_id: mongojs.Object(req.params.id)},
-         
+         {$set: body}
      )
      .then(text => res.json(text))
      .catch(err => {
