@@ -1,7 +1,8 @@
 module.exports = {
     Home: require("./homeRoute"),
-    // Products: require("./productModel"),
-    // User: require("./userCollection")
-    PlantingInstructions: require("./PlantingRoute")
+    Product: require("./productRoute"),
+    User: require("./userRoUts"),
+    PlantingInstructions: require("./PlantingRoute"),
+
   };
   
