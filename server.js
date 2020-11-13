@@ -25,6 +25,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/satsopBulbFarmd
 //use routes
 app.use("/api", routes.Home)
 app.use("/api", routes.PlantingInstructions)
+app.use("/api", routes.Product)
+app.use("/api", routes.User)
+
 
 
 app.listen(PORT, () => {
