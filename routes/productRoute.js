@@ -16,7 +16,7 @@ router.get("/products", (req, res) => {
 
 
 // Route - Find by ID
-app.get("/product/:id", (req, res) => {
+router.get("/product/:id", (req, res) => {
     db.products.findOne(
         {
             _id: mongojs.Object(req.params.id)
@@ -32,7 +32,7 @@ app.get("/product/:id", (req, res) => {
 })
 
 // Route - Find by Name
-app.get("/product/name", (req, res) => {
+router.get("/product/name", (req, res) => {
     db.products.findOne(
         {
             _id: mongojs.Object(req.params.name)
@@ -49,7 +49,7 @@ app.get("/product/name", (req, res) => {
 
 
 // Route - Update Product
-app.put('/update/product/:id', ({body}, res, next) => {
+router.put('/update/product/:id', ({body}, res, next) => {
     let id = {
       _id: ObjectID(req.params.id)
     };
@@ -65,7 +65,7 @@ app.put('/update/product/:id', ({body}, res, next) => {
 
 
 // Route - Delete
-app.delete("/delete/:id", (req, res) => {
+router.delete("/delete/:id", (req, res) => {
     db.products.remove(
       {
         _id: mongojs.ObjectID(req.params.id)
