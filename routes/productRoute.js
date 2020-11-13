@@ -47,6 +47,17 @@ router.get("/product/name", (req, res) => {
     );
 })
 
+// Route - Create New Product
+router.post("/product/create", ({ body }, res) => {
+  db.products.create(body)
+    .then(newProduct => {
+      res.status(200).send("okay")
+    }).catch(err => {
+      console.log(err);
+      res.status(500).send("server error")
+    })
+});
+
 
 // Route - Update Product
 router.put('/update/product/:id', ({body}, res, next) => {
