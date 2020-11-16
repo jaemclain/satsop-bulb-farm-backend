@@ -27,11 +27,6 @@ const ProductSchema = new Schema({
     required: "Price (USD)"
   },
 
-  bloomSeason: {
-    type: String,
-    trim: true,
-  },
-
   plantingSeason: {
     type: String,
     trim: true,
@@ -47,6 +42,11 @@ const ProductSchema = new Schema({
 
   sale: {
     type: Boolean
+  },
+
+  description: {
+    type: String,
+    trim: true
   },
 
 })
