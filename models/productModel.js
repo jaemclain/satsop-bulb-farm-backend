@@ -17,6 +17,8 @@ const ProductSchema = new Schema({
 
   price: {
     type: Number,
+    currency: "USD",
+    price: 9990,
     required: "Price (USD)"
   },
 

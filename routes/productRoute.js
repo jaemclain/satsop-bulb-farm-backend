@@ -6,7 +6,7 @@ const db = require("../models");
 
 // Route - ALL Products
 router.get("/products", (req, res) => {
-    db.products.find({})
+    db.Products.find({})
     .then(dbProduct => {
         res.json(dbProduct);
     }).catch(err => {
@@ -17,7 +17,7 @@ router.get("/products", (req, res) => {
 
 // Route - Find by ID
 router.get("/product/:id", (req, res) => {
-    db.products.findOne(
+    db.Products.findOne(
         {
             _id: mongojs.Object(req.params.id)
         },
@@ -33,7 +33,7 @@ router.get("/product/:id", (req, res) => {
 
 // Route - Find by Name
 router.get("/product/name", (req, res) => {
-    db.products.findOne(
+    db.Products.findOne(
         {
             _id: mongojs.Object(req.params.name)
         },
@@ -49,7 +49,7 @@ router.get("/product/name", (req, res) => {
 
 // Route - Create New Product
 router.post("/product/create", ({ body }, res) => {
-  db.products.create(body)
+  db.Products.create(body)
     .then(newProduct => {
       res.status(200).send("okay")
     }).catch(err => {
@@ -65,7 +65,7 @@ router.put('/update/product/:id', ({body}, res, next) => {
       _id: ObjectID(req.params.id)
     };
 
-    db.products.update({_id: id}, {$set: body}, (err, result) => {
+    db.Products.update({_id: id}, {$set: body}, (err, result) => {
       if(err) {
         throw err;
       }
@@ -77,7 +77,7 @@ router.put('/update/product/:id', ({body}, res, next) => {
 
 // Route - Delete
 router.delete("/delete/:id", (req, res) => {
-    db.products.remove(
+    db.Products.remove(
       {
         _id: mongojs.ObjectID(req.params.id)
       },
