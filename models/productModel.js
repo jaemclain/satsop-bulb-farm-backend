@@ -4,6 +4,11 @@ const router = require("../routes");
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
+  category: {
+    type: String,
+    trim: true
+  },
+
   name: {
     type: String,
     trim: true,
@@ -33,11 +38,7 @@ const ProductSchema = new Schema({
   },
 
   sun: {
-    type: Boolean
-  },
-
-  drainedSoil: {
-    type: Boolean
+    type: String,
   },
 
   inStock: {
