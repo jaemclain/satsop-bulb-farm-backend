@@ -3,6 +3,7 @@ module.exports = {
     Products: require("./productModel"),
     User: require("./userModel"),
     faq: require("./faqModel"),
-    PlantingInstruction: require("./PlantingInstructions")
+    PlantingInstruction: require("./PlantingInstructions"),
+    companyInfo: require("./companyModel")
   };
   
