@@ -1,8 +1,8 @@
 # satsop-bulb-farm-backend
 ## Description
-Family Owned 3 generation Bulb farm in a small town with no stoplight. The Bulb Farm was in need for an updated site to better fit the needs of the owner and also for the custoemers. The new site will allow The Bulb Farm to reach new audiences, allow online orders, allow for the admin to update anything on the site and provide the farm with a more updated, professional look. 
+Family Owned 3 generation Bulb farm in a small town with no stoplight. The Bulb Farm was in need for an updated site to better fit the needs of the owner and also for the custoemers. The new site will allow The Bulb Farm to reach new audiences, allow online orders, allow for the owner to update anything on the site and provide the farm with a more updated, professional look. 
 
-### Deployed link: 
+### Deployed link: https://calm-brook-21723.herokuapp.com/
 
 
 ## Table of Contents
@@ -62,13 +62,15 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 [Jae Mclain](https://github.com/jaemclain)
 
-[Steven Bong](https://github.com/stevenbong96)
-
 [Joshua Jainga](https://github.com/jjainga)
+
+[Steven Bong](https://github.com/stevenbong96)
 
 ## Questions
 Please direct questions to:
-Github account stevenbong96, jaemclain
+Github account 
+stevenbong96-Back End 
+jaemclain-Front End
 
 
 ## License 
