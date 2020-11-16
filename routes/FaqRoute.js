@@ -53,4 +53,15 @@ router.put("/faqText/:id", ({ body }, res ) => {
      
  })
 
+ router.delete("/faqText/:id", (req, res ) => {
+    console.log("hello")
+   db.faq.findOneAndRemove(
+       {_id: req.params.id})
+   .then(text => res.json(text))
+   .catch(err => {
+      res.json(err);
+    });
+   
+})
+
 module.exports = router;
