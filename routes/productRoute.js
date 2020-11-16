@@ -15,37 +15,37 @@ router.get("/products", (req, res) => {
 })
 
 
-// Route - Find by ID
-router.get("/product/:id", (req, res) => {
-    db.Products.findOne(
-        {
-            _id: mongojs.Object(req.params.id)
-        },
-        (error, data) => {
-            if (error) {
-                res.send(error);
-            } else {
-                res.json(data);
-            }
-        }
-    );
-})
 
 // Route - Find by Name
 router.get("/product/name", (req, res) => {
-    db.Products.findOne(
-        {
-            _id: mongojs.Object(req.params.name)
-        },
-        (error, data) => {
-            if (error) {
-                res.send(error);
-            } else {
-                res.json(data);
-            }
-        }
+  db.Products.findOne(
+    {
+      name: req.params.name
+    },
+    (error, data) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.json(data);
+      }
+    }
     );
-})
+  })
+  // Route - Find by ID
+  router.get("/product/:id", (req, res) => {
+      db.Products.findOne(
+          {
+              _id: req.params.id
+          },
+          (error, data) => {
+              if (error) {
+                  res.send(error);
+              } else {
+                  res.json(data);
+              }
+          }
+      );
+  })
 
 // Route - Create New Product
 router.post("/product/create", ({ body }, res) => {
