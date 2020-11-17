@@ -31,7 +31,7 @@ router.post("/admin/create", ({ body }, res) => {
 router.put("/user/update", ({ body, params }, res) => {
   db.User.update(
     {
-      _id: mongojs.ObjectId(params.id)
+      _id: params.id
     },
     {
       $set: body
