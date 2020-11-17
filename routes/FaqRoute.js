@@ -41,9 +41,9 @@ router.put("/faqText", ({ body }, res ) => {
       });
 })
 
-router.put("/faqText/:id", ({ body }, res ) => {
+router.put("/faqText/:id", ({ body, params }, res ) => {
      db.faq.findByIdAndUpdate(
-         {_id: req.params.id},
+         {_id: params.id},
          {$set: body}
      )
      .then(text => res.json(text))

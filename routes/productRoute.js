@@ -43,9 +43,9 @@ router.post("/product/create", ({ body }, res) => {
 
 
 // Route - Update Product
-router.put('/update/product/:id', ({body}, res, next) => {
+router.put('/update/product/:id', ({body, params}, res, next) => {
     let id = {
-      _id: req.params.id
+      _id: params.id
     };
 
     db.Products.update({_id: id}, {$set: body}, (err, result) => {
