@@ -4,7 +4,7 @@ const db = require("../models");
 
 //Get request for companyInfo text
 router.get("/companyInfoText", (req, res) => {
-    db.companyInfo.find()
+    db.companyInfo.find().populate("hours")
     .then(text => res.json(text))
     .catch(err => {
         res.json(err);
@@ -52,6 +52,5 @@ router.put("/companyInfoText/:id", ({ body, params }, res ) => {
       });
      
  })
-
 
 module.exports = router;
