@@ -34,6 +34,7 @@ const ProductSchema = new Schema({
 
   sun: {
     type: String,
+    trim: true
   },
 
   inStock: {
