@@ -59,7 +59,7 @@ router.put('/update/product/:id', ({body, params}, res, next) => {
 
 
 // Route - Delete
-router.delete("/delete/:id", (req, res) => {
+router.delete("/product/:id", (req, res) => {
     db.Products.remove(
       {
         _id: req.params.id
