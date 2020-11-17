@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const db = require("../models");
+const bcrypt =require("bcrypt")
 
 // const databaseURL = User
 // const collections = ["Products"]
@@ -43,9 +44,9 @@ router.post("/product/create", ({ body }, res) => {
 
 
 // Route - Update Product
-router.put('/update/product/:id', ({body}, res, next) => {
+router.put('/update/product/:id', ({body, params}, res, next) => {
     let id = {
-      _id: req.params.id
+      _id: params.id
     };
 
     db.Products.update({_id: id}, {$set: body}, (err, result) => {
@@ -59,7 +60,7 @@ router.put('/update/product/:id', ({body}, res, next) => {
 
 
 // Route - Delete
-router.delete("/delete/:id", (req, res) => {
+router.delete("/product/:id", (req, res) => {
     db.Products.remove(
       {
         _id: req.params.id
