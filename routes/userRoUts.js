@@ -28,7 +28,7 @@ router.post("/admin/create", ({ body }, res) => {
 
 // Update - User Page
 
-router.put("/user/update", ({ body, params }, res) => {
+router.put("/user/update/:id", ({ body, params }, res) => {
   db.User.update(
     {
       _id: params.id
