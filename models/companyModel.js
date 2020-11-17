@@ -41,6 +41,10 @@ const CompanySchema = new Schema({
     type: String,
     trim: true
   },
+  hours:[{
+    type: Schema.Types.ObjectId,
+    ref: "Hours"
+  }],
   userCreated: {
     type: Date,
     default: Date.now

@@ -4,6 +4,7 @@ module.exports = {
     User: require("./userModel"),
     faq: require("./faqModel"),
     PlantingInstruction: require("./PlantingInstructions"),
-    companyInfo: require("./companyModel")
+    companyInfo: require("./companyModel"),
+    Hours: require("./hoursModel")
   };
   
