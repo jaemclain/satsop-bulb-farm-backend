@@ -43,7 +43,7 @@ router.put("/faqText", ({ body }, res ) => {
 
 router.put("/faqText/:id", ({ body }, res ) => {
      db.faq.findByIdAndUpdate(
-         {_id: mongojs.Object(req.params.id)},
+         {_id: req.params.id},
          {$set: body}
      )
      .then(text => res.json(text))
