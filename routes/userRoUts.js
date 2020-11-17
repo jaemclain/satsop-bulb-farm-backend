@@ -27,17 +27,30 @@ router.post("/admin/create", ({ body }, res) => {
 
 
 // Update - User Page
-
 router.put("/user/update/:id", ({ body, params }, res) => {
-  db.User.update(
-    {
-      _id: params.id
-    },
-    {
-      $set: body
+  db.User.update({ _id: params.id }, { $set: body }, (err, result) => {
+    if (err) {
+      throw err;
     }
-  )
+    res.status(200).send("okay");
+  });
 })
+
+// Route - Delete
+router.delete("/user/:id", (req, res) => {
+  db.User.remove(
+    {
+      _id: req.params.id
+    },
+    (error, data) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.json(data);
+      }
+    }
+  );
+});
 
 
 
