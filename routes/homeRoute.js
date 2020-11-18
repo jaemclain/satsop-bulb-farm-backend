@@ -53,5 +53,13 @@ router.put("/homeText/:id", ({ body, params }, res ) => {
      
  })
 
+ router.delete("/homeText/:id", ({params}, res) => {
+     db.Home.findByIdAndRemove({_id: params.id})
+     .then(text => res.json(text))
+     .catch(err => {
+        res.json(err);
+      });
+ })
+
 
 module.exports = router;
