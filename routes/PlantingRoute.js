@@ -52,4 +52,12 @@ router.put("/PlantingInstructionText/:id", ({ body, params }, res ) => {
      
  })
 
+ router.delete("/PlantingInstructionText/:id", ({params}, res) => {
+     db.PlantingInstruction.findByIdAndRemove({_id: params.id})
+     .then(text => res.json(text))
+     .catch(err => {
+        res.json(err);
+      });
+ })
+
 module.exports = router;
