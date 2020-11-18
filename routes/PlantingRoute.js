@@ -10,7 +10,7 @@ router.get("/PlantingInstructionText", (req, res) => {
         res.json(err);
       });
 })
-
+//get one planting instruction text
 router.get("/PlantingInstructionText/:id", (req, res) => {
     db.PlantingInstruction.findOne({
         _id: req.params.id
@@ -39,7 +39,7 @@ router.put("/PlantingInstructionText", ({ body }, res ) => {
         res.json(err);
       });
 })
-
+//update one planting instruction text
 router.put("/PlantingInstructionText/:id", ({ body, params }, res ) => {
      db.PlantingInstruction.findByIdAndUpdate(
          {_id: params.id},
@@ -50,6 +50,16 @@ router.put("/PlantingInstructionText/:id", ({ body, params }, res ) => {
         res.json(err);
       });
      
+ })
+//delete planting instructions
+ router.delete("/PlantingInstructionText/:id", ({params}, res) => {
+     db.PlantingInstruction.findByIdAndRemove({
+         _id: params.id
+     })
+     .then(text => res.json(text))
+     .catch(err => {
+        res.json(err);
+      });
  })
 
 module.exports = router;
