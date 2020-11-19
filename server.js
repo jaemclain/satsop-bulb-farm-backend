@@ -3,6 +3,7 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 
 const cors = require("cors");
+const {cloudinary} = require('./routes/cloudinary');
 
 
 const PORT = process.env.PORT || 3000;

@@ -9,6 +9,11 @@ const ProductSchema = new Schema({
     trim: true
   },
 
+  image: {
+    type: String,
+    trim: true,
+  },
+
   name: {
     type: String,
     trim: true,
