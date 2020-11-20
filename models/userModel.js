@@ -32,6 +32,10 @@ const UserSchema = new Schema({
   }
 });
 
+User.beforeCreate(function(user){
+  User.password = bcrypt.hashSync(User.password, bcrypt.genSaltSync(10),null);
+});
+
 const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
