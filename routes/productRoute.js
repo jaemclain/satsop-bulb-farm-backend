@@ -76,6 +76,8 @@ router.delete("/product/:id", (req, res) => {
   });
 
 
-
+  router.get("/products", (req, res) => {
+    res.render("products", { user: req.session.user })
+})
 
   module.exports = router;
