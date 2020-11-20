@@ -32,8 +32,32 @@ const UserSchema = new Schema({
   }
 });
 
-User.beforeCreate(function(user){
-  user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10),null);
+// User.beforeCreate(function(user){
+//   user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10),null);
+// });
+
+UserSchema.pre('save', function(next)  {
+  let user = this;
+  console.log('user', user)
+  bcrypt.hash(user.password, 10, function(error, hash) {
+    if (error) {
+      return next(error);
+    } else {
+      user.password = hash;
+      user.confirmPassword = hash;
+      next();
+    }
+  });
+});
+
+UserSchema.pre('validate', function(next) {
+  let user = this;
+  console.log('user', user)
+  if (user.password !== user.confirmPassword) {
+    return next('Passwords must match');
+  } else {
+    next();
+  }
 });
 
 const User = mongoose.model("User", UserSchema);
