@@ -24,13 +24,18 @@ const ProductSchema = new Schema({
     type: Array,
   },
   
-  price: {
+  initalPrice: {
     type: Number,
     currency: "USD",
     price: 9990,
     required: "Price (USD)"
   },
-
+  transactionPrice: {
+    type: Number,
+    currency: "USD",
+    price: 9990,
+    required: "Price (USD)"
+  },
   plantingSeason: {
     type: String,
     trim: true,
@@ -46,7 +51,8 @@ const ProductSchema = new Schema({
   },
 
   sale: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
 
   description: {
