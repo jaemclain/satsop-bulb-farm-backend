@@ -57,19 +57,25 @@ router.delete("/user/:id", (req, res) => {
 
 // User Login
 router.post('/login', (req, res) => {
+  console.log(req.body)
   db.User.findOne({
-      where: { email: req.body.userEmail }
-  }).then(user => {
+  email: req.body.userEmail 
+  }).then(async user => {
+    console.log("FOUND USER", user)
+    console.log('CHECKING PASSWORD', await user.validatePassword(req.body.userPassword))
       //check if user entered password matches db password
       if (!user) {
           req.session.destroy();
           return res.status(401).redirect("/error")
 
-      } else if (bcrypt.compareSync(req.body.userPassword, user.password)) {
+      } else if (await user.validatePassword(req.body.userPassword)) {
           req.session.user = {
               email: user.email,
           }
-          return res.redirect("/admin/dashboard")
+          //return res.redirect("/admin/dashboard")
+          return res.json({
+            email:user.email
+          })
       }
       else {
           req.session.destroy();

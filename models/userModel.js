@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const Schema = mongoose.Schema;
 
@@ -32,9 +33,21 @@ const UserSchema = new Schema({
   }
 });
 
-User.beforeCreate(function(user){
-  User.password = bcrypt.hashSync(User.password, bcrypt.genSaltSync(10),null);
+
+UserSchema.pre('save', async function save(next)  {
+  if (!this.isModified('password')) return next();
+  try{
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    return next();
+  } catch (err) {
+    return next(err);
+  }
 });
+
+UserSchema.methods.validatePassword = async function validatePassword(data){
+  return bcrypt.compareSync(data, this.password);
+};
 
 const User = mongoose.model("User", UserSchema);
 
