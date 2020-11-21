@@ -7,7 +7,7 @@ const {cloudinary} = require('./routes/cloudinary');
 const session = require("express-session");
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 app.use(cors());
