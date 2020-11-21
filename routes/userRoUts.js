@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const db = require("../models");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { request } = require("express");
 
 // Route - User Collection
 router.get("/user", (req, res) => {
@@ -59,41 +61,78 @@ router.delete("/user/:id", (req, res) => {
 router.post('/login', (req, res) => {
   console.log(req.body)
   db.User.findOne({
-  email: req.body.userEmail 
+  email: req.body.email 
   }).then(async user => {
     console.log("FOUND USER", user)
-    console.log('CHECKING PASSWORD', await user.validatePassword(req.body.userPassword))
+    // console.log('CHECKING PASSWORD', await user.validatePassword(req.body.userPassword))
       //check if user entered password matches db password
       if (!user) {
-          req.session.destroy();
+          // req.session.destroy();
           return res.status(401).redirect("/error")
 
-      } else if (await user.validatePassword(req.body.userPassword)) {
-          req.session.user = {
-              email: user.email,
+      } else if (await user.validatePassword(req.body.password)) {
+          // req.session.user = {
+          //     email: user.email,
+          // }
+          const userTokenInfo = {
+            email: user.email,
+            id: user._id,
+            name: user.name
           }
+          const token = jwt.sign(userTokenInfo,"secretString",{expiresIn:"2h"});
+          return res.status(200).json({token:token})
           //return res.redirect("/admin/dashboard")
-          return res.json({
-            email:user.email
-          })
+          // return res.json({
+          //   email:user.email
+          // })
       }
-      else {
-          req.session.destroy();
-          return res.status(401).redirect("/error")
-      }
+      // else {
+          // req.session.destroy();
+      //     return res.status(401).redirect("/error")
+      // }
   })
 })
 
-// Logout 
-router.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect("/")
+// Web Tokens
+const checkAuthStatus = request =>{
+if(!request.headers.authorization) {
+  return false
+}
+token = request.headers.authorization.split(" ")[1]
+
+const loggedInUser = jwt.verify(token, 'secretString', (err, data) => {
+  if (err) {
+  }
+  else {
+    return data
+  }
+});
+console.log(loggedInUser)
+return loggedInUser;
+}
+
+
+// Secret String
+router.get("/secrets", (req,res)=>{
+  const loggedInUser = checkAuthStatus(req);
+  console.log(loggedInUser);
+  if(!loggedInUser){
+    return res.status(401).send("invalid token")
+  }
+  res.status(200).send("valid token");
 })
 
+
+// Logout 
+// router.get('/logout', (req, res) => {
+//   req.session.destroy();
+//   res.redirect("/")
+// })
+
 // Session 
-router.get("/sessiondata", (req, res) => {
-  res.json(req.session)
-})
+// router.get("/sessiondata", (req, res) => {
+//   res.json(req.session)
+// })
 
 
 module.exports = router;
