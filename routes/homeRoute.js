@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const db = require("../models");
-
+const jwt = require("jsonwebtoken");
 
 //Get request for home text
 router.get("/homeText", (req, res) => {
