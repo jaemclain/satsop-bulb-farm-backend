@@ -59,7 +59,7 @@ router.delete("/user/:id", (req, res) => {
 
 // User Login
 router.post('/login', (req, res) => {
-  console.log(req.body)
+  console.log("CONNECTED TO LOGIN", req.body);
   db.User.findOne({
   email: req.body.email 
   }).then(async user => {
