@@ -21,11 +21,11 @@ const checkAuthStatus = request => {
 
 //Get request for companyInfo text
 router.get("/companyInfoText", (req, res) => {
-    const loggedInUser = checkAuthStatus(req);
-    console.log(loggedInUser);
-    if (!loggedInUser) {
-        return res.status(401).send("invalid token")
-    }
+    // const loggedInUser = checkAuthStatus(req);
+    // console.log(loggedInUser);
+    // if (!loggedInUser) {
+    //     return res.status(401).send("invalid token")
+    // }
     db.companyInfo.find().populate("hours")
         .then(text => {
             console.log("TEXT", text);
