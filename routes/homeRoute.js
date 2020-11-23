@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const db = require("../models");
-
 const jwt = require("jsonwebtoken");
 
 
@@ -24,11 +23,11 @@ const checkAuthStatus = request => {
 
 //Get request for home text
 router.get("/homeText", (req, res) => {
-    const loggedInUser = checkAuthStatus(req);
-    console.log(loggedInUser);
-    if (!loggedInUser) {
-        return res.status(401).send("invalid token")
-    }
+    // const loggedInUser = checkAuthStatus(req);
+    // console.log(loggedInUser);
+    // if (!loggedInUser) {
+    //     return res.status(401).send("invalid token")
+    // }
     db.Home.find()
     .then(text => res.json(text))
     .catch(err => {

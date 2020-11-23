@@ -24,11 +24,11 @@ const checkAuthStatus = request => {
 
 // Route - ALL Products
 router.get("/products", (req, res) => {
-  const loggedInUser = checkAuthStatus(req);
-    console.log(loggedInUser);
-    if (!loggedInUser) {
-        return res.status(401).send("invalid token")
-    }
+  // const loggedInUser = checkAuthStatus(req);
+  //   console.log(loggedInUser);
+  //   if (!loggedInUser) {
+  //       return res.status(401).send("invalid token")
+  //   }
     db.Products.find({})
     .then(dbProduct => {
         res.json(dbProduct);

@@ -21,11 +21,11 @@ const checkAuthStatus = request => {
 
 //Get request for faq text
 router.get("/faqText", (req, res) => {
-    const loggedInUser = checkAuthStatus(req);
-    console.log(loggedInUser);
-    if (!loggedInUser) {
-        return res.status(401).send("invalid token")
-    }
+    // const loggedInUser = checkAuthStatus(req);
+    // console.log(loggedInUser);
+    // if (!loggedInUser) {
+    //     return res.status(401).send("invalid token")
+    // }
     // console.log(db)
     db.faq.find()
     .then(text => res.json(text))
