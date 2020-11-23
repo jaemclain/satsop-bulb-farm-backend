@@ -1,12 +1,34 @@
 const router = require("express").Router();
 const db = require("../models");
 const bcrypt =require("bcrypt")
+const jwt = require("jsonwebtoken");
 
 // const databaseURL = User
 // const collections = ["Products"]
+const checkAuthStatus = request => {
+  if (!request.headers.authorization) {
+      return false
+  }
+  token = request.headers.authorization.split(" ")[1]
+
+  const loggedInUser = jwt.verify(token, 'secretString', (err, data) => {
+      if (err) {
+      }
+      else {
+          return data
+      }
+  });
+  console.log("CHECK HERE", loggedInUser)
+  return loggedInUser;
+}
 
 // Route - ALL Products
 router.get("/products", (req, res) => {
+  const loggedInUser = checkAuthStatus(req);
+    console.log(loggedInUser);
+    if (!loggedInUser) {
+        return res.status(401).send("invalid token")
+    }
     db.Products.find({})
     .then(dbProduct => {
         res.json(dbProduct);

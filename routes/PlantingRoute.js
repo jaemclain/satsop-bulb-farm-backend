@@ -1,9 +1,31 @@
 const router = require("express").Router();
 const db = require("../models");
+const jwt = require("jsonwebtoken");
 
+const checkAuthStatus = request => {
+    if (!request.headers.authorization) {
+        return false
+    }
+    token = request.headers.authorization.split(" ")[1]
+
+    const loggedInUser = jwt.verify(token, 'secretString', (err, data) => {
+        if (err) {
+        }
+        else {
+            return data
+        }
+    });
+    console.log("CHECK HERE", loggedInUser)
+    return loggedInUser;
+}
 
 //Get request for PlantingInstruction text
 router.get("/PlantingInstructionText", (req, res) => {
+    const loggedInUser = checkAuthStatus(req);
+    console.log(loggedInUser);
+    if (!loggedInUser) {
+        return res.status(401).send("invalid token")
+    }
     db.PlantingInstruction.find()
     .then(text => res.json(text))
     .catch(err => {

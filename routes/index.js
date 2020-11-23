@@ -7,7 +7,7 @@ const User = require("./userRoUts")
 const PlantingInstructions = require("./PlantingRoute")
 const companyInfoText = require("./companyInfoRoute")
 const Hours = require("./hoursRoute")
-
+const nodemailer = require("./nodemailer")
 
 router.use(Home)
 router.use(faq)
@@ -16,6 +16,7 @@ router.use(User)
 router.use(PlantingInstructions)
 router.use(companyInfoText)
 router.use(Hours)
+router.use(nodemailer)
 
   module.exports = router
   
