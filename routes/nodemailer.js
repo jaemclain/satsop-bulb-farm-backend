@@ -1,14 +1,15 @@
 const router = require("express").Router();
 const db = require("../models");
 const nodemailer = require("nodemailer");
+require('dotenv').config()
 
 let transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: process.env.SERVER,
     // port: 587,
     secure: false,
     auth: {
-        // user: "info@satsopbulbfarm.com",
-        // pass: "Satsop4"
+        user: process.env.USEREMAIL,
+        pass: process.env.PASSWORD
     }
 });
 
@@ -31,8 +32,8 @@ router.post('/email', (req, res, next) => {
     // var content= "HELLO TESTING HERE"
 
     var mail = {
-        from: "stevenseal96@gmail.com",
-        to: email,
+        from: email,
+        to: process.env.HOSTMAIL,
         subject: inquiries,
         text: `${firstName} ${lastName} is sending you an email! \n
                 Message from ${firstName} is listed below: \n
