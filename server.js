@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const {cloudinary} = require('./routes/cloudinary');
 const session = require("express-session");
-
+require('dotenv').config()
 
 const PORT = process.env.PORT || 4000;
 
