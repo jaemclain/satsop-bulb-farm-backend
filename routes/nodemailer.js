@@ -28,16 +28,12 @@ router.post('/email', (req, res, next) => {
     var email = req.body.email
     var inquiries = req.body.inquiries
     var content = req.body.message
-    // var inquiries = "Planting instructions"
-    // var content= "HELLO TESTING HERE"
 
     var mail = {
         from: email,
         to: process.env.HOSTMAIL,
         subject: inquiries,
-        text: `${firstName} ${lastName} is sending you an email! \n
-                Message from ${firstName} is listed below: \n
-                ${content}`
+        text: `${firstName} ${lastName} is sending you an email! \n\n Message from ${firstName} regarding ${inquiries} is listed as below : \n \n ${content}`
     }
 
     transporter.sendMail(mail, (err, data) => {
