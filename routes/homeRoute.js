@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const db = require("../models");
 
+const jwt = require("jsonwebtoken");
+
+
 const checkAuthStatus = request => {
     if (!request.headers.authorization) {
         return false
@@ -17,6 +20,7 @@ const checkAuthStatus = request => {
     console.log("CHECK HERE", loggedInUser)
     return loggedInUser;
 }
+
 
 //Get request for home text
 router.get("/homeText", (req, res) => {
