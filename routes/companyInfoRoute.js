@@ -15,7 +15,7 @@ const checkAuthStatus = request => {
             return data
         }
     });
-    console.log("CHECK HERE", loggedInUser)
+    // console.log("CHECK HERE", loggedInUser)
     return loggedInUser;
 }
 
@@ -56,11 +56,11 @@ router.post("/companyInfoText", ({ body }, res) => {
 
 //Put request for companyInfo text
 router.put("/companyInfoText", ({ body }, res) => {
-    const loggedInUser = checkAuthStatus(req);
-    console.log(loggedInUser);
-    if (!loggedInUser) {
-        return res.status(401).send("invalid token")
-    }
+    // const loggedInUser = checkAuthStatus({body});
+    // console.log(loggedInUser);
+    // if (!loggedInUser) {
+    //     return res.status(401).send("invalid token")
+    // }
     db.companyInfo.update(body
     )
         .then(text => res.json(text))

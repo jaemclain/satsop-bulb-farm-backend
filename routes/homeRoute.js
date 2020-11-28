@@ -69,11 +69,11 @@ router.put("/homeText", ({ body }, res) => {
 })
 
 router.put("/homeText/:id", ({ body, params }, res) => {
-    const loggedInUser = checkAuthStatus(req);
-    // console.log(loggedInUser);
-    if (!loggedInUser) {
-        return res.status(401).send("invalid token")
-    }
+    // const loggedInUser = checkAuthStatus(req);
+    // // console.log(loggedInUser);
+    // if (!loggedInUser) {
+    //     return res.status(401).send("invalid token")
+    // }
     db.Home.findByIdAndUpdate(
         { _id: params.id },
         { $set: body }

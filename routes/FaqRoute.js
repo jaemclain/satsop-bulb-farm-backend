@@ -47,11 +47,11 @@ router.get("/faqText/:id", (req, res) => {
 //Post request for f&q text
 router.post("/faqText", ({ body }, res) => {
     console.log(db)
-    const loggedInUser = checkAuthStatus(req);
-    // console.log(loggedInUser);
-    if (!loggedInUser) {
-        return res.status(401).send("invalid token")
-    }
+    // const loggedInUser = checkAuthStatus(req);
+    // // console.log(loggedInUser);
+    // if (!loggedInUser) {
+    //     return res.status(401).send("invalid token")
+    // }
     db.faq.create(body).then(text =>
         res.json(text)).catch(err => {
             res.json(err);
@@ -69,11 +69,11 @@ router.put("/faqText", ({ body }, res) => {
 })
 
 router.put("/faqText/:id", ({ body, params }, res) => {
-    const loggedInUser = checkAuthStatus(req);
+    // const loggedInUser = checkAuthStatus(req);
     // console.log(loggedInUser);
-    if (!loggedInUser) {
-        return res.status(401).send("invalid token")
-    }
+    // if (!loggedInUser) {
+    //     return res.status(401).send("invalid token")
+    // }
     db.faq.findByIdAndUpdate(
         { _id: params.id },
         { $set: body }
@@ -87,11 +87,11 @@ router.put("/faqText/:id", ({ body, params }, res) => {
 
 router.delete("/faqText/:id", (req, res) => {
     console.log("hello")
-    const loggedInUser = checkAuthStatus(req);
-    // console.log(loggedInUser);
-    if (!loggedInUser) {
-        return res.status(401).send("invalid token")
-    }
+    // const loggedInUser = checkAuthStatus(req);
+    // // console.log(loggedInUser);
+    // if (!loggedInUser) {
+    //     return res.status(401).send("invalid token")
+    // }
     db.faq.findOneAndRemove(
         { _id: req.params.id })
         .then(text => res.json(text))

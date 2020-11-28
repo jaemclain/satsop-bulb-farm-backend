@@ -63,11 +63,11 @@ router.put("/PlantingInstructionText", ({ body }, res ) => {
 })
 //update one planting instruction text
 router.put("/PlantingInstructionText/:id", ({ body, params }, res ) => {
-    const loggedInUser = checkAuthStatus(req);
-    // console.log(loggedInUser);
-    if (!loggedInUser) {
-        return res.status(401).send("invalid token")
-    }
+    // const loggedInUser = checkAuthStatus(req);
+    // // console.log(loggedInUser);
+    // if (!loggedInUser) {
+    //     return res.status(401).send("invalid token")
+    // }
      db.PlantingInstruction.findByIdAndUpdate(
          {_id: params.id},
          {$set: body}

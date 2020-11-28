@@ -70,11 +70,11 @@ router.put('/update/product/:id', ({ body, params }, res, next) => {
   let id = {
     _id: params.id
   };
-  const loggedInUser = checkAuthStatus(req);
-  // console.log(loggedInUser);
-  if (!loggedInUser) {
-    return res.status(401).send("invalid token")
-  }
+  // const loggedInUser = checkAuthStatus(req);
+  // // console.log(loggedInUser);
+  // if (!loggedInUser) {
+  //   return res.status(401).send("invalid token")
+  // }
   db.Products.update({ _id: id }, { $set: body }, (err, result) => {
     if (err) {
       throw err;
@@ -87,11 +87,11 @@ router.put('/update/product/:id', ({ body, params }, res, next) => {
 
 // Route - Delete
 router.delete("/product/:id", (req, res) => {
-  const loggedInUser = checkAuthStatus(req);
-  // console.log(loggedInUser);
-  if (!loggedInUser) {
-    return res.status(401).send("invalid token")
-  }
+  // const loggedInUser = checkAuthStatus(req);
+  // // console.log(loggedInUser);
+  // if (!loggedInUser) {
+  //   return res.status(401).send("invalid token")
+  // }
   db.Products.remove(
     {
       _id: req.params.id
