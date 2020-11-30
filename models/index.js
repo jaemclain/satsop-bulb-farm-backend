@@ -5,6 +5,7 @@ module.exports = {
     faq: require("./faqModel"),
     PlantingInstruction: require("./PlantingInstructions"),
     companyInfo: require("./companyModel"),
-    Hours: require("./hoursModel")
+    Hours: require("./hoursModel"),
+    Order: require("./ordersModel")
   };
   
