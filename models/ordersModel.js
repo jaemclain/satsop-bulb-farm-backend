@@ -10,9 +10,16 @@ orderId: {
 customerTotalAmount: {
     type: Number
 },
-purchaseList: {
-    type: Array
-},
+purchaseList:[{ 
+    name:{
+        type: String},
+    description: {
+        type: String
+    },
+    price: Number,
+    curreny: String
+    }]
+,
 customerEmail: {
     type: String,
     match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
