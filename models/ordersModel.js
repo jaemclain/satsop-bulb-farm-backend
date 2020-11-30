@@ -15,7 +15,6 @@ purchaseList: {
 },
 customerEmail: {
     type: String,
-    unique: true,
     match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
 },
 customerAddress:{
