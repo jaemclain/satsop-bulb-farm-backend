@@ -12,12 +12,17 @@ customerTotalAmount: {
 },
 purchaseList:[{ 
     name:{
-        type: String},
+        type: String
+    },
     description: {
         type: String
     },
-    price: Number,
-    curreny: String
+    price: {
+        type: Number
+    },
+    curreny: {
+        type: String
+    }
     }]
 ,
 customerEmail: {
