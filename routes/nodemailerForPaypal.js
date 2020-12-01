@@ -4,12 +4,12 @@ const nodemailer = require("nodemailer");
 require('dotenv').config()
 
 let transporter = nodemailer.createTransport({
-    service: process.env.SERVER2,
+    service: process.env.SERVER,
     // port: 587,
     secure: false,
     auth: {
-        user: process.env.USEREMAIL2,
-        pass: process.env.PASSWORD2
+        user: process.env.USEREMAIL,
+        pass: process.env.PASSWORD
     }
 });
 
@@ -37,19 +37,20 @@ router.post('/orderDetails', (req, res, next) => {
     var customerCountry = req.body.detailsKey.purchase_units[0].shipping.address.country_code
     
     var mail = {
-        from: process.env.HOSTMAIL2, 
-        to: "satsopbulbfarm7@gmail.com",
-        subject: `${description} Order Confirmation #: ${orderId}`,
+        from: process.env.HOSTMAIL, 
+        to: customerEmail,
+        subject: `${description} Order Confirmation # ${orderId}`,
         text: `Hello ${firstName} ${lastName}! 
         \n\n Below, you will find details about the orders that you have made with us! 
         \n\n Mailing Address:
         \n\n ${customerAddress}
         \n ${customerCity},${customerState} ${customerZipCode}
-        \n\n Here are the list of your orders! 
-        \n\n ${purchaseList.map(purchaseObj => {return (` ${purchaseObj.name} with $ ${purchaseObj.price} `)})} 
+        \n ${customerCountry}
+        \n\n Here is the list of your orders! 
+        \n\n ${purchaseList.map(purchaseObj => {return (` ${purchaseObj.name} with $ ${purchaseObj.price}`)})} 
         \n\n Total of your purchase will be $ ${totalAmount} 
         \n\n Thank you for ordering from us! 
-        \n\n Have a good day!`
+        \n Have a good day!`
     }
 
     transporter.sendMail(mail, (err, data) => {
