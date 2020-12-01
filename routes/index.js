@@ -9,6 +9,7 @@ const companyInfoText = require("./companyInfoRoute")
 const Hours = require("./hoursRoute")
 const Order = require("./ordersRoute")
 const nodemailer = require("./nodemailer")
+const nodemailerForPaypal = require("./nodemailerForPaypal")
 
 router.use(Home)
 router.use(faq)
@@ -19,6 +20,8 @@ router.use(companyInfoText)
 router.use(Hours)
 router.use(Order)
 router.use(nodemailer)
+router.use(nodemailerForPaypal)
 
-  module.exports = router
+
+module.exports = router
   
