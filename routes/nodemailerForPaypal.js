@@ -23,31 +23,31 @@ transporter.verify(function (error, success) {
 });
 
 router.post('/orderDetails', (req, res, next) => {
-    console.log(req.body);
-
-    var orderId = req.body.detailsKey.orderId
-    var totalAmount = req.body.detailsKey.customerTotalAmount
+    var firstName = req.body.detailsKey.payer.name.given_name
+    var lastName = req.body.detailsKey.payer.name.surname
+    var orderId = req.body.detailsKey.id
+    var totalAmount = req.body.detailsKey.purchase_units[0].amount.value
+    var description = req.body.detailsKey.purchase_units[0].description
     var purchaseList = req.body.listKey
-    var customerEmail = req.body.detailsKey.customerEmail
-    var customerAddress = req.body.detailsKey.customerAddress 
-    var customerCity = req.body.detailsKey.customerCity
-    var customerState = req.body.detailsKey.customerState
-    var customerZipCode = req.body.detailsKey.customerZipCode
-    var customerCountry = req.body.detailsKey.customerCountry
-
-    console.log()
+    var customerEmail = req.body.detailsKey.purchase_units[0].payee.email_address
+    var customerAddress = req.body.detailsKey.purchase_units[0].shipping.address.address_line_1
+    var customerCity = req.body.detailsKey.purchase_units[0].shipping.address.admin_area_2
+    var customerState = req.body.detailsKey.purchase_units[0].shipping.address.admin_area_1
+    var customerZipCode = req.body.detailsKey.purchase_units[0].shipping.address.postal_code
+    var customerCountry = req.body.detailsKey.purchase_units[0].shipping.address.country_code
     
     var mail = {
         from: process.env.HOSTMAIL2, 
         to: "satsopbulbfarm7@gmail.com",
-        subject: `Order Confirmation #: ${orderId}`,
-        text: `Below, you will find details about the orders that you have made with us! 
+        subject: `${description} Order Confirmation #: ${orderId}`,
+        text: `Hello ${firstName} ${lastName}! 
+        \n\n Below, you will find details about the orders that you have made with us! 
         \n\n Mailing Address:
         \n\n ${customerAddress}
-        \n\n ${customerCity},${customerState} ${customerZipCode}
+        \n ${customerCity},${customerState} ${customerZipCode}
         \n\n Here are the list of your orders! 
-        \n\n ${purchaseList.map(purchaseObj => {return (`${purchaseObj.name} with $${purchaseObj.price}`)})} 
-        \n\n Total of your purchase will be ${totalAmount} 
+        \n\n ${purchaseList.map(purchaseObj => {return (` ${purchaseObj.name} with $ ${purchaseObj.price} `)})} 
+        \n\n Total of your purchase will be $ ${totalAmount} 
         \n\n Thank you for ordering from us! 
         \n\n Have a good day!`
     }
