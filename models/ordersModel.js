@@ -27,6 +27,7 @@ purchaseList:[{
 ,
 customerEmail: {
     type: String,
+    unique: false,
     match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
 },
 customerAddress:{
@@ -49,6 +50,10 @@ completed: {
     default: false
 },
 trackingNumber: {
+    type: String,
+    trim: true
+},
+shipping: {
     type: String,
     trim: true
 },
