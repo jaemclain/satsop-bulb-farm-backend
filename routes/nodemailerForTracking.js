@@ -25,17 +25,17 @@ transporter.verify(function (error, success) {
 router.post('/orderTracking', (req, res, next) => {
     // var firstName = req.body.detailsKey.payer.name.given_name
     // var lastName = req.body.detailsKey.payer.name.surname
-    var trackingNumber = req.body.trackingNumber
-    var orderId = req.body.detailsKey.id
+    var trackingNumber = req.body.trackStatus
+    var orderId = req.body.userInfo.orderId
     // var totalAmount = req.body.detailsKey.purchase_units[0].amount.value
     // var description = req.body.detailsKey.purchase_units[0].description
     // var purchaseList = req.body.listKey
-    var customerEmail = req.body.customerEmail
-    var customerAddress = req.body.customerAddress
-    var customerCity = req.body.customerCity
-    var customerState = req.body.customerState
-    var customerZipCode = req.body.customerZipCode
-    var customerCountry = req.body.customerCountry
+    var customerEmail = req.body.userInfo.customerEmail
+    var customerAddress = req.body.userInfo.customerAddress
+    var customerCity = req.body.userInfo.customerCity
+    var customerState = req.body.userInfo.customerState
+    var customerZipCode = req.body.userInfo.customerZipCode
+    var customerCountry = req.body.userInfo.customerCountry
     
     var mail = {
         from: process.env.HOSTMAIL, 
@@ -44,7 +44,7 @@ router.post('/orderTracking', (req, res, next) => {
         text: `Hello! 
         \n\n Your order is on the way!
         \n\n Below you will find the tracking number associated with your orders
-        \n Tracking # ${trackingNumber}
+        \n Tracking #${trackingNumber}
         \n\n And it will be sent to
         \n ${customerAddress}
         \n ${customerCity},${customerState} ${customerZipCode}
