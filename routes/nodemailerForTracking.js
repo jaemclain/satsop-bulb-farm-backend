@@ -23,13 +23,8 @@ transporter.verify(function (error, success) {
 });
 
 router.post('/orderTracking', (req, res, next) => {
-    // var firstName = req.body.detailsKey.payer.name.given_name
-    // var lastName = req.body.detailsKey.payer.name.surname
     var trackingNumber = req.body.trackStatus
     var orderId = req.body.userInfo.orderId
-    // var totalAmount = req.body.detailsKey.purchase_units[0].amount.value
-    // var description = req.body.detailsKey.purchase_units[0].description
-    // var purchaseList = req.body.listKey
     var customerEmail = req.body.userInfo.customerEmail
     var customerAddress = req.body.userInfo.customerAddress
     var customerCity = req.body.userInfo.customerCity
@@ -39,7 +34,7 @@ router.post('/orderTracking', (req, res, next) => {
     
     var mail = {
         from: process.env.HOSTMAIL, 
-        to: process.env.HOSTMAIL,
+        to: customerEmail,
         subject: `Updates On Order Confirmation # ${orderId}`,
         text: `Hello! 
         \n\n Your order is on the way!
