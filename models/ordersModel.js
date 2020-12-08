@@ -25,6 +25,12 @@ purchaseList:[{
     }
     }]
 ,
+firstName: {
+    type: String
+},
+lastName: {
+    type: String
+},
 customerEmail: {
     type: String,
     unique: false,
